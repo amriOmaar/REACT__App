@@ -1,13 +1,12 @@
 import { Component } from "react";
 import Product from "./Product";
 import products from "../products.json";
-import { Container, Row, Col } from "react-bootstrap";
+import { Alert, Container, Row, Col } from "react-bootstrap";
+
 
 
 
 class Products extends Component {
-
-
 
   constructor(props) {
     super(props);
@@ -29,13 +28,15 @@ class Products extends Component {
   render() {
     return (
       <Container style={{marginTop:'2rem'}}>
+        
         <Row>
-          {products.map((product, index) => (
-            <Col style={{margin: '1rem'}}key={index} lg={3}>
+          {products.map((product, i) => (
+            <Col style={{margin: '1rem'}} key={i} lg={3}>
               <Product  product={product}></Product>
             </Col>
           ))}
         </Row>
+        {this.state.purchaseConfirmed && <Alert variant="primary" > you bought an item </Alert>}
       </Container>
     );
   }

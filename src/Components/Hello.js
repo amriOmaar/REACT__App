@@ -19,17 +19,15 @@ class Hello extends Component {
     this.setState({
       count: this.state.count+1
     },
-    ()=> console.log( this.state.count))
+    ()=> console.log(this.state.count))
    
   }
-
-
 
   render() {
     return (
       <>
         <h3>{this.state.count}</h3>
-        <button onClick={this.clickHandler}>click</button>
+        <button onClick={this.clickHandler}>COUNT</button>
       </>
     );
   }
