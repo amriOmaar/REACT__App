@@ -23,12 +23,24 @@ class Products extends Component {
     };
   }
 
-
-
   render() {
     return (
       <Container style={{marginTop:'2rem'}}>
-        
+        {
+        this.state.showAlert && (<Alert variant="success " >
+                    <div className="d-flex flex-column">
+                        <div className="justify-content-start">
+                            <div>
+                                <p>Welcome to our shop <b>MyStore</b> </p>
+                            </div>
+                            <div>
+                                <p>thank you for choosing our store we hope you enjoy your shopping experience </p>
+
+                            </div>
+                        </div>
+                    </div>
+                </Alert>)
+                }
         <Row>
           {products.map((product, i) => (
             <Col style={{margin: '1rem'}} key={i} lg={3}>

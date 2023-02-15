@@ -36,29 +36,24 @@ class Product extends Component {
     return (
       <>
                 <Card style={{ width: '18rem', maxHeight: '30rem' }}>
-                    <Card.Img style={{ Width: '9rem', maxHeight: '9rem' }} variant="top" src={"/images/" + this.props.product.img} />
+                    <Card.Img style={{ Width: '9rem', maxHeight: '9rem' }} 
+                    variant="top" src={require("../assets/images/" + this.props.product.img)} />
                     <Card.Body>
                         <Card.Title className='p-2'>
-
                             {this.props.product.name}
-
-
                         </Card.Title>
                         <Card.Text >
                             <p className='text-truncate'>
-
                                 {this.props.product.description}
                             </p>
                         </Card.Text>
                         <Card.Text> {this.props.product.price} </Card.Text>
-                        <Card.Text>likes: {this.props.product.like}</Card.Text>
-                        <Card.Text>quantity: {this.props.product.quantity}</Card.Text>
+                        <Card.Text>Likes: {this.props.product.like}</Card.Text>
+                        <Card.Text>Quantity: {this.props.product.quantity}</Card.Text>
                     </Card.Body>
                     <Card.Footer>
-                        <div className='d-flex justify-content-between'>
-                            <Button variant="primary" onClick={this.like}>Like</Button>
-                            <Button variant="primary" disabled={this.props.product.quantity == 0} onClick={this.buy} >buy</Button>
-                        </div>
+                        <Button variant="primary" onClick={this.addLike} >Like</Button>
+                        <Button variant="primary" disabled={this.props.product.quantity === 0} onClick={this.buy} >buy</Button>
                     </Card.Footer>
                 </Card>
 
