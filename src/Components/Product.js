@@ -1,69 +1,53 @@
 import { Component } from "react";
-import { Card, Button } from "react-bootstrap";
-
+import { Button, Card, Col, Row } from "react-bootstrap";
 
 class Product extends Component {
-
-
-    constructor(props){
-        super(props);
-        this.state = {
-            product: props.product
-        }
-        
-        this.addLike= this.addLike.bind(this)
-        this.buy = this.buy.bind(this);
-
-    }
-
-    addLike (e){
-      e.preventDefault();  
-      this.setState((oldState)=>({
-        product: {...oldState.product,
-            like: oldState.product.like+1}
-      })
-      )
-    }
-
-    buy() {
-
-      this.props.product.quantity--;
-      this.setState({ product: this.props.product });
-      this.props.onPurchase();
+  constructor(props) {
+    super(props);
+    this.state = { product: props.product};
   }
-
+  addLikes = (e) => {
+    e.preventDefault();
+    this.setState((oldState) => ({
+      product: { ...oldState.product, like: oldState.product.like + 1 },
+     
+    }));
+  };
+  
+ 
   render() {
     return (
-      <>
-                <Card style={{ width: '18rem', maxHeight: '30rem' }}>
-                    <Card.Img style={{ Width: '9rem', maxHeight: '9rem' }} 
-                    variant="top" src={require("../assets/images/" + this.props.product.img)} />
-                    <Card.Body>
-                        <Card.Title className='p-2'>
-                            {this.props.product.name}
-                        </Card.Title>
-                        <Card.Text >
-                            <p className='text-truncate'>
-                                {this.props.product.description}
-                            </p>
-                        </Card.Text>
-                        <Card.Text> {this.props.product.price} </Card.Text>
-                        <Card.Text>Likes: {this.props.product.like}</Card.Text>
-                        <Card.Text>Quantity: {this.props.product.quantity}</Card.Text>
-                    </Card.Body>
-                    <Card.Footer>
-                        <Button variant="primary" onClick={this.addLike} >Like</Button>
-                        <Button variant="primary" disabled={this.props.product.quantity === 0} onClick={this.buy} >buy</Button>
-                    </Card.Footer>
-                </Card>
-
-            </>
-      
+      <Card style={{ width: "18rem" }} className="text-center" border="secondary">
+             <Card.Header>
+        <Card.Img
+          variant="top"
+          src={require("../assets/images/" + this.props.product.img)}
+          alt="Product Img"
+          height={200}
+        />
+        </Card.Header>
+        <Card.Body>
+          <Card.Title>{this.state.product.name}</Card.Title>
+          <Card.Text>Price : {this.state.product.price} DT</Card.Text>
+          <Card.Text>Quantity :{this.state.product.quantity}</Card.Text>
+          <Card.Text>Likes :{this.state.product.like}</Card.Text>
+          <Row>
+            <Col md={6}>
+              {" "}
+              <Button variant="primary" onClick={this.addLikes}>Like</Button>
+            </Col>
+            <Col md={6}>
+              <Button 
+              variant="info" onClick={()=>this.props.buyFunction(this.state.product)} 
+              disabled={this.state.product.quantity===0}>
+                Buy
+              </Button>
+            </Col>
+          </Row>
+        </Card.Body>
+      </Card>
     );
   }
 }
-
-
-
 
 export default Product;
